@@ -8,8 +8,8 @@ This repo is the PyTorch implementation of MemN2N model proposed in [End-To-End 
 
 ## Requirements
 
-+ [PyTorch](http://pytorch.org/) ==0.4.0
-+ [torchtext](https://github.com/shihan9/text) (please install my fork version of torchtext since the PR hasn't been accepted yet.)
++ [PyTorch](http://pytorch.org/) ==0.4.1
++ [torchtext](https://github.com/pytorch/text) ==0.3.1
 + [click](http://click.pocoo.org/5/) ==6.7
 
 ## Dataset

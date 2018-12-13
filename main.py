@@ -23,7 +23,7 @@ def train(train_iter, model, optimizer, epochs, max_clip, valid_iter=None):
 
         optimizer.zero_grad()
         outputs = model(story, query)
-        loss = F.nll_loss(outputs, answer.view(-1), ignore_index=pad, size_average=False)
+        loss = F.nll_loss(outputs, answer.view(-1), ignore_index=pad, reduction='sum')
         loss.backward()
         nn.utils.clip_grad_norm_(model.parameters(), max_clip)
         optimizer.step()
@@ -37,7 +37,7 @@ def train(train_iter, model, optimizer, epochs, max_clip, valid_iter=None):
                 query = batch.query
                 answer = batch.answer
                 outputs = model(story, query)
-                loss += F.nll_loss(outputs, answer.view(-1), ignore_index=pad, size_average=False).item()
+                loss += F.nll_loss(outputs, answer.view(-1), ignore_index=pad, reduction='sum').item()
             loss = loss / k
             if valid_loss and valid_loss <= loss:
                 model.use_ls = False
